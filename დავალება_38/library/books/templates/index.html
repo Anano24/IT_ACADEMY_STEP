@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Home page</title> {% endblock %}
+
+{% block content %}
+    <div class="container-md">
+
+        <h1 style="text-align: center; margin: 100px 0 40px;">წიგნები</h1>
+        <hr>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for book in books %}
+            <div class="col mt-5">  
+            <div class="card h-100">
+                <img src="{{ book.img_link }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">{{book.title}}</h5>
+                <p class="card-text">{{book.author}}</p>
+                <a href="{% url 'books:bookdetail' book.id %}" class="btn btn-primary">ნახვა</a>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

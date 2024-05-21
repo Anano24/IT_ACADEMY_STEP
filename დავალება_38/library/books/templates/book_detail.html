@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Detail</title> {% endblock %}
+
+{% block content %}
+    <div class="container-md">
+
+
+        <div class="card mb-3" style="max-width: 100%; margin-top: 100px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ one_book.img_link }}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{one_book.title}}</h5>
+                  <p class="card-text mb-5"><small class="text-body-secondary">{{one_book.author}}</small></p>
+                  <p class="card-text mb-5">{{one_book.description}}</p>
+                  <a href="{% url 'books:homepage' %}" class="btn btn-primary">უკან</a>
+                  <a href="{% url 'books:deletebook' one_book.id %}" class="btn btn-danger">წაშლა</a> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+{% endblock %}
