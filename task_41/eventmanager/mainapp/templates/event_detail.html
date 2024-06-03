@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% block title %} Event details {% endblock %}
+
+{% block body %}
+
+    <div class="container-md">
+
+        <div class="card mb-3" style="max-width: 100%; margin-top: 100px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5dfc6153e5cf6f15c4b4c6a0/1579243089356-VBXN7YMWWYOZQ1EDAJ62/metallica.jpeg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p class="card-text mb-4"><small class="text-body-secondary">{{event.description}}</small></p>
+                        <p class="card-text"> Date: {{event.date}} </p>
+                        <p class="card-text"> Location: {{event.location}} </p>
+
+                        <p class="card-text"> <strong> Category: </strong>
+                            {% for category in event.category.all %}
+                                <span class="badge text-bg-secondary"> {{ category.name }} </span>
+                            {% endfor %}
+                        </p>
+
+                        <a href="{% url 'mainapp:main_page' %}" class="btn btn-primary">Back</a>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'mainapp:add_attendee' event.id %}" class="btn btn-danger">Participate</a>
+                        {% endif %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}
