@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block title %}  {{detailed_blog.title}} {% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>{{detailed_blog.title}}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text"> {{detailed_blog.content}}</p>
+                <p class="card-text"> <strong>Author:</strong> {{detailed_blog.author}}</p>
+                <p class="card-text"> Created at: {{detailed_blog.created_at}}</p>  
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'blogapp:homepage'%}" class="btn btn-primary">Go Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

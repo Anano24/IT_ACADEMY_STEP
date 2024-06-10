@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block title %}  Home page {% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1> Blogs </h1>
+        {% for blog in blogs %}
+
+            <div class="card mb-2 mt-5">
+                <h5 class="card-header">Author: {{blog.author}}</h5>
+                <div class="card-body">
+                <h5 class="card-title">{{blog.title}}</h5>
+                <p class="card-text">{{blog.content|slice:100}}</p>
+                <p class="card-text"><strong>Date:</strong> {{ blog.created_at }}</p>
+                <a href="{% url 'blogapp:blog_detail' blog.id %}" class="btn btn-primary">Go to {{blog.title}}</a>
+                {% if user.is_authenticated and user.id == blog.author.id or user.is_superuser %}
+                    <a href="{% url 'blogapp:add_blog' %}" class="btn btn-success">Add blog</a>
+                    <a href="{% url 'blogapp:delete_blog' blog.id %}" class="btn btn-outline-danger">Delete {{blog.title}} </a>
+                {% elif user.is_authenticated and perms.blogapp.add_blog %}
+                    <a href="{% url 'blogapp:add_blog' %}" class="btn btn-success">Add blog</a>
+                {% endif %}
+                </div>
+            </div>
+
+        {% endfor %}
+          
+    </div>
+
+{% endblock %}
